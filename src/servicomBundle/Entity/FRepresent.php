@@ -3,6 +3,7 @@
 namespace servicomBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * FRepresent
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="f_represent")
  * @ORM\Entity
  */
-class FRepresent
+class FRepresent extends BaseUser
 {
     /**
      * @var integer
@@ -68,7 +69,7 @@ class FRepresent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
 
 }

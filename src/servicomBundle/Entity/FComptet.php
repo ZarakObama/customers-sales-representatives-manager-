@@ -104,7 +104,7 @@ class FComptet
     /**
      * @var string
      *
-     * @ORM\Column(name="CT_DateCreate", type="date", length=19, nullable=true)
+     * @ORM\Column(name="CT_DateCreate", type="string", length=19, nullable=true)
      */
     private $ctDatecreate;
 

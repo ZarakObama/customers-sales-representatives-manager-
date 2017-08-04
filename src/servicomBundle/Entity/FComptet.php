@@ -158,7 +158,11 @@ class FComptet
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="FRepresent")
+     * @ORM\JoinColumn(name="RE_No", referencedColumnName="id", nullable=true)
+     */
+    private $ctReNo;
     /**
      * @return string
      */

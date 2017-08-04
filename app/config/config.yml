@@ -92,3 +92,6 @@ fos_user:
     from_email:
         address: "hello@boss.tn"
         sender_name: "zarakbecha"
+    registration:
+             form:
+                 type: servicomBundle\Form\FRepresentType

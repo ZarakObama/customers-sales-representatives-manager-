@@ -5,6 +5,10 @@ parameters:
 
 services:
     # default configuration for services in *this* file
+    app.form.registration:
+            class: servicomBundle\Form\FRepresentType
+            tags:
+                - { name: form.type }
     _defaults:
         # automatically injects dependencies in your services
         autowire: true

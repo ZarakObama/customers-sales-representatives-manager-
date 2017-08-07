@@ -25,6 +25,8 @@
             <link rel="stylesheet" href="{{ asset('bundles/app/css/only_dashboard.css') }}" />
                 <link rel="shortcut icon" href="http://www.servi.com.tn/wp-content/uploads/2017/03/2-02.png">
         {% endblock %}
+        {% block pagestyle %}
+        {% endblock %}
 
     </head>
     <body class="skin-josh">
@@ -179,7 +181,7 @@
                                                 </li>
                                                 <li class="dropdown user user-menu">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <img data-src="holder.js/35x35/#fff:#000" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                                                                <img src="{{ asset('images/products/'~userf.imageName) }}" style="max-width: 35px;max-height: 35px" class="img-circle img-responsive pull-left"  alt="riot">
                                                                 <div class="riot">
                                                                         <div>
 
@@ -191,9 +193,11 @@
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                                 <!-- User image -->
-                                                                <li class="user-header bg-light-blue">
-                                                                        <img data-src="holder.js/90x90/#fff:#000" class="img-responsive img-circle" alt="User Image">
-                                                                        <p class="topprofiletext">Riot Zeast</p>
+                                                                <li class="user-header" style="background-color: #A6192E">
+
+                                                                        <img src="{{ asset('images/products/'~userf.imageName) }}" class="img-responsive img-circle" alt="User Image">
+                                                                        <p class="topprofiletext">{{ userf.reNom }} {{ userf.rePrenom }}</p>
+
                                                                 </li>
                                                                 <!-- Menu Body -->
                                                                 <li>
@@ -218,7 +222,7 @@
                                                                                 </a>
                                                                         </div>
                                                                         <div class="pull-right">
-                                                                                <a href="login.html">
+                                                                                <a href="{{ path('fos_user_security_logout') }}">
                                                                                         <i class="livicon" data-name="sign-out" data-s="18"></i>
                                                                                         Logout
                                                                                 </a>
@@ -247,32 +251,12 @@
                                                                 </a>
                                                         </li>
                                                         <li>
-                                                                <a href="#">
+                                                                <a href="{{ path('client_list') }}">
                                                                         <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                                                         <span class="title">Mes Clients</span>
-                                                                        <span class="fa arrow"></span>
-                                                                </a>
-                                                                <ul class="sub-menu">
-                                                                        <li>
-                                                                                <a href="form_builder.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Fournisseurs
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="form_builder2.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Passagers
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="buttonbuilder.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Permanents
-                                                                                </a>
-                                                                        </li>
 
-                                                                </ul>
+                                                                </a>
+
                                                         </li>
                                                         <li>
                                                                 <a href="#">
@@ -290,7 +274,7 @@
                                                                                 </a>
                                                                         </li>
                                                                         <li>
-                                                                                <a href="accordionformwizard.html">
+                                                                                <a href="{{ path('fos_user_registration_register') }}">
                                                                                         <i class="fa fa-angle-double-right"></i>
                                                                                         Nouvel Agent
                                                                                 </a>
@@ -320,7 +304,7 @@
                                                                 </ul>
                                                         </li>
                                                         <li>
-                                                                <a href="#">
+                                                                <a href="{{ path('fos_user_security_logout') }}">
                                                                         <i class="livicon" data-name="sign-out" data-c="#EF6F6C" data-hc="#EF6F6C" data-size="18" data-loop="true"></i>
                                                                         <span class="title">Déconnexion</span>
 
@@ -384,5 +368,6 @@
                 });
             </script>
         {% endblock %}
+    {% block js %}{% endblock %}
     </body>
 </html>

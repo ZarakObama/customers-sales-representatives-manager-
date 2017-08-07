@@ -68,3 +68,30 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+           product_image:
+                       uri_prefix:         /images/products
+
+                       upload_destination: '%kernel.root_dir%/../web/images/products'
+
+                       namer:  vich_uploader.namer_hash
+                       inject_on_load:     false
+                       delete_on_update:   true
+                       delete_on_remove:   true
+
+
+
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: servicomBundle\Entity\FRepresent
+    from_email:
+        address: "hello@boss.tn"
+        sender_name: "zarakbecha"
+    registration:
+             form:
+                 type: servicomBundle\Form\FRepresentType

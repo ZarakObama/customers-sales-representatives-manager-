@@ -34,7 +34,7 @@
         <section class="content">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul class="nav  nav-tabs ">
+                    <ul class="nav  nav-tabs " role="tablist">
                         <li class="active">
                             <a href="#tab1" data-toggle="tab">
                                 <i class="livicon" data-name="user" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i>
@@ -46,6 +46,7 @@
                                 Change Password</a>
                         </li>
 
+
                     </ul>
                     <div  class="tab-content mar-top">
                         <div id="tab1" class="tab-pane fade active in">
@@ -55,23 +56,17 @@
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
 
-                                                User Profile
-                                            </h3>
+                  {{ userf.reNom }} &nbsp {{  userf.rePrenom }}                                            </h3>
 
                                         </div>
                                         <div class="panel-body">
                                             <div class="col-md-4">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail img-file">
-                                                        <img data-src="holder.js/100%x100%" alt="..."></div>
-                                                    <div class="fileinput-preview fileinput-exists thumbnail img-max"></div>
-                                                    <div>
-                                                            <span class="btn btn-default btn-file">
-                                                                <span class="fileinput-new">Select image</span>
-                                                                <span class="fileinput-exists">Change</span>
-                                                                <input type="file" name="..."></span>
-                                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                                    </div>
+                                                        <img src="{{ asset('images/products/'~userf.imageName) }}" style="padding-left: 40px" class="img-circle img-responsive pull-left"  alt="riot">
+                                                        </div>
+
+
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
@@ -80,28 +75,28 @@
                                                         <table class="table table-bordered table-striped" id="users">
 
                                                             <tr>
-                                                                <td>User Name</td>
+                                                                <td>Nom d'utilisateur</td>
                                                                 <td>
-                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit User Name">Bella</a>
+                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit User Name">{{ userf.username }}</a>
                                                                 </td>
 
                                                             </tr>
                                                             <tr>
                                                                 <td>E-mail</td>
                                                                 <td>
-                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit E-mail">gankunding@hotmail.com</a>
+                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit E-mail">{{ userf.reEmail }}||{{ userf.email }}</a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Phone Number</td>
+                                                                <td>Numero de téléphone</td>
                                                                 <td>
-                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit Phone Number">(999) 999-9999</a>
+                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit Phone Number">{{ userf.reTelephone }}</a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Address</td>
+                                                                <td>Region</td>
                                                                 <td>
-                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit Address">Sydney, Australia</a>
+                                                                    <a href="#" data-pk="1" class="editable" data-title="Edit Address">{{ userf.reRegion }}</a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -111,15 +106,15 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Created At</td>
+                                                                <td>Date de Création</td>
                                                                 <td>
-                                                                    1 month ago
+                                                                    {{ userf.reDatecreation |date}}
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>City</td>
+                                                                <td>Re No</td>
                                                                 <td>
-                                                                    <a href="#" data-pk="1"  class="editable" data-title="Edit City">Nakia</a>
+                                                                    <a href="#" data-pk="1"  class="editable" data-title="Edit City">{{ userf.reNo }}</a>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -134,11 +129,12 @@
                         <div id="tab2" class="tab-pane fade">
                             <div class="row">
                                 <div class="col-md-12 pd-top">
-                                    <form action="#" class="form-horizontal">
+                                        {{ form_start(form, {'attr': {'class':'form-horizontal' }} ) }}
+
                                         <div class="form-body">
                                             <div class="form-group">
                                                 <label for="inputpassword" class="col-md-3 control-label">
-                                                    Password
+                                                    Mot de passe
                                                     <span class='require'>*</span>
                                                 </label>
                                                 <div class="col-md-9">
@@ -146,13 +142,29 @@
                                                             <span class="input-group-addon">
                                                                 <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
                                                             </span>
-                                                        <input type="password" placeholder="Password" class="form-control"/>
+                                                        {{ form_widget(form.current_password, {'attr': {'class': 'form-control','placeholder':'Mot de passe','type':'password' }}) }}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputpassword" class="col-md-3 control-label">
+                                                Nouveau Mot de passe
+                                                    <span class='require'>*</span>
+                                                </label>
+                                                <div class="col-md-9">
+                                                    <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
+                                                            </span>
+                                                        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control','placeholder':'Nouveau Mot de passe','type':'password' }}) }}
+
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="inputnumber" class="col-md-3 control-label">
-                                                    Confirm Password
+                                                    Confirmer Mot de passe
                                                     <span class='require'>*</span>
                                                 </label>
                                                 <div class="col-md-9">
@@ -160,20 +172,23 @@
                                                             <span class="input-group-addon">
                                                                 <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
                                                             </span>
-                                                        <input type="password" placeholder="Password" class="form-control"/>
+                                                        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control','placeholder':'Confirmer Mot de passe','type':'password' }}) }}
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-actions">
                                             <div class="col-md-offset-3 col-md-9">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-primary">soumettre
+                                                </button>
                                                 &nbsp;
-                                                <button type="button" class="btn btn-danger">Cancel</button>
+                                                <button type="button" class="btn btn-danger">Annuler</button>
                                                 &nbsp;
-                                                <input type="reset" class="btn btn-default hidden-xs" value="Reset"></div>
+                                                <input type="reset" class="btn btn-default hidden-xs" value="Remettre"></div>
                                         </div>
-                                    </form>
+                                    {{ form_end(form) }}
+
                                 </div>
                             </div>
                         </div>

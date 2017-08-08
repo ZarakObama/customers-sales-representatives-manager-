@@ -9,6 +9,7 @@
 namespace servicomBundle\Controller;
 
 
+use FOS\UserBundle\Form\Type\ChangePasswordFormType;
 use servicomBundle\Entity\FRepresent;
 use servicomBundle\Form\FRepresentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,7 +38,9 @@ class FRepresentController extends Controller
         $id =  $this->getUser()->getId();
         $em=$this->getDoctrine()->getManager();
         $ProfileCommercial = $em->getRepository(FRepresent::class)->findOneBy(array('id' => $id ));
-        $form = $this->createForm(FRepresentType::class,$ProfileCommercial );
+
+        $form = $this->createForm(ChangePasswordFormType::class,$ProfileCommercial );
+
         $form->handleRequest($request);
         if($form->isSubmitted() )
         {
@@ -55,24 +58,25 @@ class FRepresentController extends Controller
         }
         /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.change_password.form.factory');
-        $form1 = $formFactory->createForm();
-        $form1->setData($user);
-        $form1->handleRequest($request);
-        if ($form1->isSubmitted() && $form1->isValid()) {
+        $form = $formFactory->createForm();
+        $form->setData($user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var $userManager UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager.default');
-            $event = new FormEvent($form1, $request);
+            $userManager = $this->get('fos_user.user_manager');
+            $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
             $userManager->updateUser($user);
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
+                $url = $this->generateUrl('fos_user_security_logout');
                 $response = new RedirectResponse($url);
             }
+           // $this->redirect('/logout');
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
             return $response;
         }
         return $this->render('@servicom/pages/profile_commercial.html.twig',array(
-            'form1'=>$form1->createView(),
+
             'form'=>$form->createView(),
             'userf'=>$ProfileCommercial
         ));

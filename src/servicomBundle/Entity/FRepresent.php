@@ -47,23 +47,24 @@ class FRepresent extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="RE_Telephone", type="string", length=5, nullable=true)
+     * @ORM\Column(name="RE_Telephone", type="string", length=15, nullable=true)
      */
     public $reTelephone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="RE_EMail", type="string", length=10, nullable=true)
+     * @ORM\Column(name="RE_EMail", type="string",length=255, nullable=true)
      */
     public $reEmail;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="RE_DateCreation", type="string", length=19, nullable=true)
+     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Version
+     * @var \DateTime
      */
-    public $reDatecreation;
+    public $reDatecreation = null;
+
 
     /**
      * @var integer
@@ -94,6 +95,16 @@ class FRepresent extends BaseUser
      * @var \DateTime
      */
     public $updatedAt;
+
+    /**
+     * FRepresent constructor.
+     * @param null $reDatecreation
+     */
+    public function __construct()
+    {
+        $this->reDatecreation = new \DateTime();
+    }
+
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the  update. If this

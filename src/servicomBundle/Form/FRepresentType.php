@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseRegistrationFormType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class FRepresentType extends AbstractType
 {
@@ -21,8 +22,11 @@ class FRepresentType extends AbstractType
             ->add('reRegion')
             ->add('reTelephone')
             ->add('reEmail')
-            ->add('reDatecreation')
-            ->add('imageName');
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+
+
+            ]);
 
     }
     

@@ -25,6 +25,8 @@
             <link rel="stylesheet" href="{{ asset('bundles/app/css/only_dashboard.css') }}" />
                 <link rel="shortcut icon" href="http://www.servi.com.tn/wp-content/uploads/2017/03/2-02.png">
         {% endblock %}
+        {% block pagestyle %}
+        {% endblock %}
 
     </head>
     <body class="skin-josh">
@@ -179,7 +181,7 @@
                                                 </li>
                                                 <li class="dropdown user user-menu">
                                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <img data-src="holder.js/35x35/#fff:#000" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                                                                <img src="{{ asset('images/products/'~userf.imageName) }}" style="max-width: 35px;max-height: 35px" class="img-circle img-responsive pull-left"  alt="riot">
                                                                 <div class="riot">
                                                                         <div>
 
@@ -191,9 +193,11 @@
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                                 <!-- User image -->
-                                                                <li class="user-header bg-light-blue">
-                                                                        <img data-src="holder.js/90x90/#fff:#000" class="img-responsive img-circle" alt="User Image">
-                                                                        <p class="topprofiletext">Riot Zeast</p>
+                                                                <li class="user-header" style="background-color: #A6192E">
+
+                                                                        <img src="{{ asset('images/products/'~userf.imageName) }}" class="img-responsive img-circle" alt="User Image">
+                                                                        <p class="topprofiletext">{{ userf.reNom }} {{ userf.rePrenom }}</p>
+
                                                                 </li>
                                                                 <!-- Menu Body -->
                                                                 <li>
@@ -218,7 +222,7 @@
                                                                                 </a>
                                                                         </div>
                                                                         <div class="pull-right">
-                                                                                <a href="login.html">
+                                                                                <a href="{{ path('fos_user_security_logout') }}">
                                                                                         <i class="livicon" data-name="sign-out" data-s="18"></i>
                                                                                         Logout
                                                                                 </a>
@@ -247,37 +251,12 @@
                                                                 </a>
                                                         </li>
                                                         <li>
-                                                                <a href="#">
+                                                                <a href="{{ path('client_list') }}">
                                                                         <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                                                         <span class="title">Mes Clients</span>
-                                                                        <span class="fa arrow"></span>
+
                                                                 </a>
-                                                                <ul class="sub-menu">
-                                                                        <li>
-                                                                                <a href="form_builder.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Builder
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="form_builder2.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Builder 2
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="buttonbuilder.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Button Builder
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="gridmanager.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Page Builder
-                                                                                </a>
-                                                                        </li>
-                                                                </ul>
+
                                                         </li>
                                                         <li>
                                                                 <a href="#">
@@ -286,46 +265,18 @@
                                                                         <span class="fa arrow"></span>
                                                                 </a>
                                                                 <ul class="sub-menu">
-                                                                        <li>
-                                                                                <a href="form_examples.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Examples
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="editor.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Editors
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="validation.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Validation
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="formelements.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Elements
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="form_layouts.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Layouts
-                                                                                </a>
-                                                                        </li>
+
+
                                                                         <li>
                                                                                 <a href="formwizard.html">
                                                                                         <i class="fa fa-angle-double-right"></i>
-                                                                                        Form Wizards
+                                                                                        Gestion des agents
                                                                                 </a>
                                                                         </li>
                                                                         <li>
-                                                                                <a href="accordionformwizard.html">
+                                                                                <a href="{{ path('fos_user_registration_register') }}">
                                                                                         <i class="fa fa-angle-double-right"></i>
-                                                                                        Accordion Wizards
+                                                                                        Nouvel Agent
                                                                                 </a>
                                                                         </li>
                                                                 </ul>
@@ -340,163 +291,25 @@
                                                                         <li>
                                                                                 <a href="animatedicons.html">
                                                                                         <i class="fa fa-angle-double-right"></i>
-                                                                                        Animated Icons
+                                                                                        Profil
                                                                                 </a>
                                                                         </li>
                                                                         <li>
                                                                                 <a href="buttons.html">
                                                                                         <i class="fa fa-angle-double-right"></i>
-                                                                                        Buttons
+                                                                                        Modifier le profil
                                                                                 </a>
                                                                         </li>
-                                                                        <li>
-                                                                                <a href="advanced_buttons.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Advanced Buttons
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="tabs_accordions.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Tabs and Accordions
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="panels.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Panels
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="icon.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Font Icons
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="color.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Color Picker Slider
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="grid.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Grid Layout
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="carousel.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Carousel
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="advanced_modals.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Advanced Modals
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="tagsinput.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Tags Input
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="nestable.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Nestable List
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="tagsinput.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Tags Input
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="nestable.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Nestable List
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="toastr.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Toastr Notifications
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="notifications.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Notifications
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="session_timeout.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Session Timeout
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="portlet_draggable.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Draggable Portlets
-                                                                                </a>
-                                                                        </li>
+
                                                                 </ul>
                                                         </li>
                                                         <li>
-                                                                <a href="#">
-                                                                        <i class="livicon" data-name="lab" data-c="#EF6F6C" data-hc="#EF6F6C" data-size="18" data-loop="true"></i>
+                                                                <a href="{{ path('fos_user_security_logout') }}">
+                                                                        <i class="livicon" data-name="sign-out" data-c="#EF6F6C" data-hc="#EF6F6C" data-size="18" data-loop="true"></i>
                                                                         <span class="title">Déconnexion</span>
-                                                                        <span class="fa arrow"></span>
+
                                                                 </a>
-                                                                <ul class="sub-menu">
-                                                                        <li>
-                                                                                <a href="general.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        General Components
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="pickers.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Pickers
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="x-editable.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        X-editable
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="timeline.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Timeline
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="transitions.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Transitions
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="sliders.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Sliders
-                                                                                </a>
-                                                                        </li>
-                                                                        <li>
-                                                                                <a href="knob.html">
-                                                                                        <i class="fa fa-angle-double-right"></i>
-                                                                                        Circles Sliders
-                                                                                </a>
-                                                                        </li>
-                                                                </ul>
+
                                                         </li>
 
                                                 </ul>
@@ -555,5 +368,6 @@
                 });
             </script>
         {% endblock %}
+    {% block js %}{% endblock %}
     </body>
 </html>

@@ -24,6 +24,150 @@ class FRepresent extends BaseUser
     public $reNo;
 
     /**
+     * @return int
+     */
+    public function getReNo()
+    {
+        return $this->reNo;
+    }
+
+    /**
+     * @param int $reNo
+     */
+    public function setReNo($reNo)
+    {
+        $this->reNo = $reNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReNom()
+    {
+        return $this->reNom;
+    }
+
+    /**
+     * @param string $reNom
+     */
+    public function setReNom($reNom)
+    {
+        $this->reNom = $reNom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRePrenom()
+    {
+        return $this->rePrenom;
+    }
+
+    /**
+     * @param string $rePrenom
+     */
+    public function setRePrenom($rePrenom)
+    {
+        $this->rePrenom = $rePrenom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReRegion()
+    {
+        return $this->reRegion;
+    }
+
+    /**
+     * @param string $reRegion
+     */
+    public function setReRegion($reRegion)
+    {
+        $this->reRegion = $reRegion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReTelephone()
+    {
+        return $this->reTelephone;
+    }
+
+    /**
+     * @param string $reTelephone
+     */
+    public function setReTelephone($reTelephone)
+    {
+        $this->reTelephone = $reTelephone;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReEmail()
+    {
+        return $this->reEmail;
+    }
+
+    /**
+     * @param string $reEmail
+     */
+    public function setReEmail($reEmail)
+    {
+        $this->reEmail = $reEmail;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getReDatecreation()
+    {
+        return $this->reDatecreation;
+    }
+
+    /**
+     * @param \DateTime $reDatecreation
+     */
+    public function setReDatecreation($reDatecreation)
+    {
+        $this->reDatecreation = $reDatecreation;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="RE_Nom", type="string", length=12, nullable=true)

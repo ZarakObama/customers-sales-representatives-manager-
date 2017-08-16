@@ -38,7 +38,8 @@ class FRepresentController extends Controller
         $id =  $this->getUser()->getId();
         $em=$this->getDoctrine()->getManager();
         $ProfileCommercial = $em->getRepository(FRepresent::class)->findOneBy(array('id' => $id ));
-
+        $demande=$em->getRepository("servicomBundle:FComptet")->findBy(array('state'=>0 ));
+        $countd=count($demande);
         $form = $this->createForm(ChangePasswordFormType::class,$ProfileCommercial );
 
         $form->handleRequest($request);
@@ -68,17 +69,19 @@ class FRepresentController extends Controller
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
             $userManager->updateUser($user);
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_security_logout');
+               $url = $this->generateUrl('fos_user_security_logout');
                 $response = new RedirectResponse($url);
             }
-           // $this->redirect('/logout');
+            //maill
+
+            // $this->redirect('/logout');
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
             return $response;
         }
         return $this->render('@servicom/pages/profile_commercial.html.twig',array(
 
             'form'=>$form->createView(),
-            'userf'=>$ProfileCommercial
+            'userf'=>$ProfileCommercial,'demande'=> $demande,'countd'=>$countd
         ));
     }
 

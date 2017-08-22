@@ -85,4 +85,63 @@ class FRepresentController extends Controller
         ));
     }
 
+    /**
+     * @Route("/Commercial_list", name="Commercial_list")
+     */
+    public function commercialListAction( )
+    {
+        $user = $this->getUser();
+        $id =  $this->getUser()->getId();
+        $email = $this->getUser()->getemail();
+
+
+        if (!is_object($user) ) {
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        else {
+
+            $em=$this->getDoctrine()->getManager();
+
+            $demande=$em->getRepository("servicomBundle:FComptet")->findBy(array('state'=>0 ));
+            $countd=count($demande);
+
+            $reno=$em->getRepository("servicomBundle:FRepresent")->findOneBy(array('id' => $id ));
+            $list=$em->getRepository("servicomBundle:FRepresent")->findAll();
+
+            $count=count($list);
+
+
+
+            return $this->render('@servicom/pages/Commercial_list.html.twig',
+                array("list"=>$list,"userf"=>$reno,"count"=>$count,"demande"=>$demande,"countd"=>$countd));
+        }
+
+    }
+
+    /**
+     * @Route("/commercial_profil/{idx}",name="commercial_profil")
+     */
+    public function clientProfilAction(Request $request,$idx)
+    {
+        $user = $this->getUser();
+        $id =  $this->getUser()->getId();
+
+
+        if (!is_object($user) ) {
+
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+        else {    $em=$this->getDoctrine()->getManager();
+
+            $reno=$em->getRepository("servicomBundle:FRepresent")->findOneBy(array('id' => $id ));
+            $list=$em->getRepository("servicomBundle:FRepresent")->findOneBy(array('id' => $idx ));
+            $demande=$em->getRepository("servicomBundle:FComptet")->findBy(array('state'=>0 ));
+            $countd=count($demande);
+
+
+            return $this->render('servicomBundle:pages:commercial_profil.html.twig',array("list"=>$list,"userf"=>$reno,"countd"=>$countd,"demande"=>$demande));
+        }
+
+    }
 }
